@@ -7,10 +7,12 @@ import org.pac4j.core.config.Config;
 import org.pac4j.http.client.direct.DirectBasicAuthClient;
 import org.pac4j.http.credentials.authenticator.test.SimpleTestUsernamePasswordAuthenticator;
 import org.pac4j.oauth.client.TwitterClient;
+import org.pac4j.springframework.security.config.Pac4jSpringSecurityReactiveConfig;
 import org.pac4j.springframework.web.SecurityFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.server.WebFilter;
 
 import java.util.Optional;
@@ -18,13 +20,11 @@ import java.util.Optional;
 @Configuration
 // to define the callback and logout controllers
 @ComponentScan(basePackages = "org.pac4j.springframework.web")
+@Import(Pac4jSpringSecurityReactiveConfig.class)
 public class Pac4jConfig {
 
     @Bean
     public Config config() {
-        Config.setProfileManagerFactory("SpringSecurityReactiveProfileManager",
-                (ctx, session) -> new SpringSecurityReactiveProfileManager(ctx, session));
-
         final TwitterClient twitterClient = new TwitterClient("CoxUiYwQOSFDReZYdjigBA", "2kAzunH5Btc4gRSaMr7D7MkyoJ5u1VzbOOzE8rBofs");
 
         final CasConfiguration configuration = new CasConfiguration("https://casserverpac4j.herokuapp.com/login");

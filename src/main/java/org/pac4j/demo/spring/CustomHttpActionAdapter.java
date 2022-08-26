@@ -16,7 +16,6 @@ public class CustomHttpActionAdapter extends SpringWebfluxHttpActionAdapter {
         if (action != null) {
             var code = action.getCode();
 
-            // to be refactored if pac4j offers new UnauthorizedAction(content), ...
             if (code == 401) {
                 return write(context, code, "<html><body><h1>unauthorized</h1><br /><a href=\"/\">Home</a></body></html>");
             } else if (code == 403) {

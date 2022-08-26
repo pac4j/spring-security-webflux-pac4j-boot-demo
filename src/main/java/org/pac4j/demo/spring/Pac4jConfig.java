@@ -4,6 +4,7 @@ import org.pac4j.cas.client.CasClient;
 import org.pac4j.cas.config.CasConfiguration;
 import org.pac4j.core.client.Clients;
 import org.pac4j.core.config.Config;
+import org.pac4j.core.matching.matcher.PathMatcher;
 import org.pac4j.http.client.direct.DirectBasicAuthClient;
 import org.pac4j.http.credentials.authenticator.test.SimpleTestUsernamePasswordAuthenticator;
 import org.pac4j.oauth.client.TwitterClient;
@@ -36,10 +37,6 @@ public class Pac4jConfig {
         final Clients clients = new Clients("http://localhost:8080/callback", twitterClient, casClient, directBasicAuthClient);
 
         final Config config = new Config(clients);
-        config.addMatcher("twitterpath", new IncludePathMatcher("/twitter"));
-        config.addMatcher("caspath", new IncludePathMatcher("/cas"));
-        config.addMatcher("protectpath", new IncludePathMatcher("/protected"));
-        config.addMatcher("dbapath", new IncludePathMatcher("/dba"));
 
         config.setHttpActionAdapter(new CustomHttpActionAdapter());
 
@@ -48,21 +45,21 @@ public class Pac4jConfig {
 
     @Bean
     public WebFilter twitterFilter() {
-        return new SecurityFilter(config(), "TwitterClient", null, "twitterpath");
+        return new SecurityFilter(config(), "TwitterClient", new PathMatcher().includePath("/twitter"));
     }
 
     @Bean
     public WebFilter casFilter() {
-        return new SecurityFilter(config(), "CasClient", null, "caspath");
+        return new SecurityFilter(config(), "CasClient", new PathMatcher().includePath("/cas"));
     }
 
     @Bean
     public WebFilter protectedFilter() {
-        return new SecurityFilter(config(), null, null, "protectpath");
+        return new SecurityFilter(config(), new PathMatcher().includePath("/protected"));
     }
 
     @Bean
     public WebFilter dbaFilter() {
-        return new SecurityFilter(config(), "DirectBasicAuthClient", null, "dbapath");
+        return new SecurityFilter(config(), "DirectBasicAuthClient", new PathMatcher().includePath("/dba"));
     }
 }

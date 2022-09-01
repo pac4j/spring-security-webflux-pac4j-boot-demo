@@ -45,21 +45,21 @@ public class Pac4jConfig {
 
     @Bean
     public WebFilter twitterFilter() {
-        return new SecurityFilter(config(), "TwitterClient", new PathMatcher().includePath("/twitter"));
+        return SecurityFilter.build(config(), "TwitterClient", new PathMatcher().includePath("/twitter"));
     }
 
     @Bean
     public WebFilter casFilter() {
-        return new SecurityFilter(config(), "CasClient", new PathMatcher().includePath("/cas"));
+        return SecurityFilter.build(config(), "CasClient", new PathMatcher().includePath("/cas"));
     }
 
     @Bean
     public WebFilter protectedFilter() {
-        return new SecurityFilter(config(), new PathMatcher().includePath("/protected"));
+        return SecurityFilter.build(config(), new PathMatcher().includePath("/protected"));
     }
 
     @Bean
     public WebFilter dbaFilter() {
-        return new SecurityFilter(config(), "DirectBasicAuthClient", new PathMatcher().includePath("/dba"));
+        return SecurityFilter.build(config(), "DirectBasicAuthClient", new PathMatcher().includePath("/dba"));
     }
 }

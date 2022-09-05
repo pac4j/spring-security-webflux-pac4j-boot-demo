@@ -50,4 +50,10 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    /*@Bean
+    public WebSessionManager webSessionManager() {
+        // emulates SessionCreationPolicy.STATELESS
+        return exchange -> Mono.empty();
+    }*/
 }

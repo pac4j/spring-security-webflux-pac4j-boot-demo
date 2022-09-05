@@ -24,22 +24,13 @@ public class Application {
 
     @RequestMapping("/index.html")
     public Mono<String> index(final ServerWebExchange exchange, final Map<String, Object> map) throws HttpAction {
-        final WebContext context = new SpringWebfluxWebContext(exchange);
-        final SessionStore sessionStore = new SpringWebfluxSessionStore(exchange);
-        final ProfileManager profileManager = new ProfileManager(context, sessionStore);
-        map.put("profiles", profileManager.getProfiles());
-        map.put("sessionId", sessionStore.getSessionId(context, false).orElse("nosession"));
-        map.put("context", "");
-        return ReactiveSecurityContextHolder.getContext().map(ctx -> {
-            map.put("context", ctx);
-            return "index";
-        }).defaultIfEmpty("index");
+        return page(exchange, map, "index");
     }
 
     @RequestMapping(value = {"/twitter/index.html", "/cas/index.html", "/dba/index.html",
             "/protected/index.html", "/admin/index.html", "/user/index.html"})
     public Mono<String> protect(final ServerWebExchange exchange, final Map<String, Object> map) {
-        return protectedIndex(exchange, map);
+        return page(exchange, map, "protectedIndex");
     }
 
     @RequestMapping("/info.html")
@@ -56,15 +47,16 @@ public class Application {
         return "loginform";
     }
 
-    protected Mono<String> protectedIndex(final ServerWebExchange exchange, final Map<String, Object> map) {
+    protected Mono<String> page(final ServerWebExchange exchange, final Map<String, Object> map, final String page) {
         final WebContext context = new SpringWebfluxWebContext(exchange);
         final SessionStore sessionStore = new SpringWebfluxSessionStore(exchange);
         final ProfileManager profileManager = new ProfileManager(context, sessionStore);
         map.put("profiles", profileManager.getProfiles());
+        map.put("sessionId", sessionStore.getSessionId(context, false).orElse("nosession"));
         map.put("context", "");
         return ReactiveSecurityContextHolder.getContext().map(ctx -> {
             map.put("context", ctx);
-            return "protectedIndex";
-        }).defaultIfEmpty("protectedIndex");
+            return page;
+        }).defaultIfEmpty(page);
     }
 }

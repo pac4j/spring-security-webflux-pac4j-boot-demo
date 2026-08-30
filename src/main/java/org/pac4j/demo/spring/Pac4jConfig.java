@@ -25,7 +25,7 @@ public class Pac4jConfig {
     public Config config() {
         final TwitterClient twitterClient = new TwitterClient("CoxUiYwQOSFDReZYdjigBA", "2kAzunH5Btc4gRSaMr7D7MkyoJ5u1VzbOOzE8rBofs");
 
-        final CasConfiguration configuration = new CasConfiguration("https://casserverpac4j.herokuapp.com/login");
+        final CasConfiguration configuration = new CasConfiguration("https://www.casserverpac4j.dev/login");
         final CasClient casClient = new CasClient(configuration);
         casClient.setAuthorizationGenerator( (ctx, session, profile) -> {
             profile.addRole("ROLE_ADMIN");

@@ -5,7 +5,7 @@
 > This demo secures a Spring Security (reactive) application with **[spring-security-pac4j](https://github.com/pac4j/spring-security-pac4j)**, the Spring Security integration of **[pac4j](https://github.com/pac4j/pac4j)**, the security engine for Java.
 > If it is useful to you, please ⭐ **[star pac4j on GitHub](https://github.com/pac4j/pac4j)**: it helps other developers discover it!
 
-This `spring-security-reactive-pac4j-boot-demo` project is a Spring Security reactive boot demo using:
+This `spring-security-webflux-pac4j-boot-demo` project is a Spring Security reactive boot demo using:
 - Spring Security reactive + Spring Webflux + Spring Boot
 - the [spring-webflux-pac4j](https://github.com/pac4j/spring-webflux-pac4j) security library
 - the [spring-security-pac4j](https://github.com/pac4j/spring-security-pac4j) bridge from pac4j to Spring Security.
@@ -14,10 +14,10 @@ This `spring-security-reactive-pac4j-boot-demo` project is a Spring Security rea
 
 You can build the project and run it on [http://localhost:8080](http://localhost:8080) using the following commands:
 
-    cd spring-security-reactive-pac4j-boot-demo
+    cd spring-security-webflux-pac4j-boot-demo
     mvn clean compile exec:java
 
 or
 
-    cd spring-security-reactive-pac4j-boot-demo
+    cd spring-security-webflux-pac4j-boot-demo
     mvn spring-boot:run

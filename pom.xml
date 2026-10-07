@@ -2,15 +2,15 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.pac4j.demo</groupId>
     <artifactId>spring-security-webflux-pac4j-boot-demo</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>11.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Spring Security reactive boot demo using spring-security-pac4j + spring-webflux-pac4j</name>
 
     <repositories>
         <repository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <id>central-portal-snapshots</id>
+            <name>Central Portal Snapshots</name>
+            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
@@ -23,14 +23,14 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.18</version>
+        <version>4.1.1</version>
     </parent>
 
     <properties>
-        <java.version>11</java.version>
-        <spring-webflux-pac4j.version>1.2.0</spring-webflux-pac4j.version>
-        <spring-security-pac4j.version>10.0.0</spring-security-pac4j.version>
-        <pac4j.version>5.8.0</pac4j.version>
+        <java.version>17</java.version>
+        <spring-webflux-pac4j.version>3.0.2</spring-webflux-pac4j.version>
+        <spring-security-pac4j.version>11.0.0-SNAPSHOT</spring-security-pac4j.version>
+        <pac4j.version>6.5.9</pac4j.version>
     </properties>
 
     <dependencies>

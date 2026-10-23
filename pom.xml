@@ -16,7 +16,7 @@
         <java.version>17</java.version>
         <spring-webflux-pac4j.version>3.0.2</spring-webflux-pac4j.version>
         <spring-security-pac4j.version>10.1.0</spring-security-pac4j.version>
-        <pac4j.version>6.5.9</pac4j.version>
+        <pac4j.version>6.6.0</pac4j.version>
     </properties>
 
     <dependencies>
